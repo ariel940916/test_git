@@ -1,15 +1,13 @@
 import ipywidgets as widgets
 from IPython.display import display, clear_output
 
-#手寫核心演算法
-
 def manual_to_decimal(value_str, base):
-    #將 N 進位字串手動轉為 10 進位整數
+    #將N進位字串手動轉為 10 進位整數
     digits = "0123456789ABCDEF"
     value_str = value_str.upper().strip()
     result = 0
     for char in value_str:
-        #尋找字元在 digits 中的索引位值
+        #尋找字元在digits中的索引位值
         val = -1
         for i in range(base):
             if digits[i] == char:
@@ -20,7 +18,7 @@ def manual_to_decimal(value_str, base):
     return result
 
 def manual_from_decimal(n, base):
-    #將 10 進位整數轉為 N 進位字串
+    #將10進位整數轉為N進位字串
     digits = "0123456789ABCDEF"
     result = ""
     temp = n
@@ -29,7 +27,7 @@ def manual_from_decimal(n, base):
         temp //= base
     return result
 
-#建立圖形介面元件
+#建立圖形介面
 
 bin_input = widgets.Text(description='二進位:', placeholder='例如: 1010')
 dec_input = widgets.Text(description='十進位:', placeholder='例如: 255')
@@ -46,7 +44,7 @@ def on_convert_clicked(b):
             if bin_input.value.strip():
                 d = manual_to_decimal(bin_input.value, 2)
             elif dec_input.value.strip():
-                #十進位字串轉整數也手動處理
+                #十進位字串轉整數
                 d = 0
                 for char in dec_input.value.strip():
                     d = d * 10 + (ord(char) - ord('0'))
